@@ -1,0 +1,226 @@
+{
+  "start": "q_start",
+  "nodes": {
+    "q_start": {
+      "question": "How old are you?",
+      "answers": {
+        "0-5": "q_childprodigy", 
+        "6-12": "q_practicetime", 
+        "13+": "q_timemoney" 
+      }
+    },
+
+    "q_childprodigy": {
+      "question": "Are you really doing this quiz? I M P R E S S I V E! Do your parents want you to be a child prodigy?",
+      "answers": {
+        "Yes!": "r_violin",
+        "No, I'm happy just to play": "q_practicetime" 
+      }
+    },
+
+    "q_practicetime": {
+      "question": "Are you prepared to put in a lot of practice time?",
+      "answers": {
+        "No I just want to get playing as quickly as possible": "q_familymad", 
+        "Yes": "r_piano"
+      }
+    },
+
+    "q_timemoney": {
+      "question": "Do you have unlimited time, lots of money and a van?",
+      "answers": {
+        "Yes I've also got a chauffeur": "r_harp",
+        "Not really": "q_musicalability" 
+      }
+    },
+
+    "q_familymad": {
+      "question": "Do you want to drive your family mad?",
+      "answers": {
+        "Wouldn't I just": "r_recorder",
+        "I'm not a brat!": "q_bighouse" 
+      }
+    },
+
+    "q_musicalability": {
+      "question": "Do you consider yourself to have some musical ability?",
+      "answers": {
+        "Not an IOTA": "r_comb_tissue_paper",
+        "I have some": "q_composer", 
+        "Yes, I'm amazing": "q_steel"
+      }
+    },
+
+    "q_steel": {
+      "question": "Do you have nerves and an upper lip of steel?",
+      "answers": {
+        "Not quite": "r_piano",
+        "That sounds just like me": "r_french_horn" 
+      }
+    },
+
+    "q_bighouse": {
+      "question": "Do you have a big house?",
+      "answers": {
+        "I live in a church": "r_organ",
+        "There's plenty of room": "q_orchestra", 
+        "It's more compact and bijou": "q_neighbours" 
+      }
+    },
+
+    "q_composer": {
+      "question": "Fancy yourself as a composer?",
+      "answers": {
+        "Yes roll over Beethoven": "q_mccartney", 
+        "Not particularly": "q_attention" 
+      }
+    },
+
+    "q_orchestra": {
+      "question": "Do you want to play in an orchestra?",
+      "answers": {
+        "Too many people, too much noise": "r_piano",
+        "My life is like a symphony!": "q_weights", 
+        "Only if it's Baroque": "q_stand" 
+      }
+    },
+
+    "q_neighbours": {
+      "question": "Do you hate your neighbours?",
+      "answers": {
+        "With a passion": "q_rhyme", 
+        "No, they're quite nice": "q_folk" 
+      }
+    },
+
+    "q_mccartney": {
+      "question": "Are you more Mozart or more McCartney?",
+      "answers": {
+        "Mozart": "r_piano",
+        "McCartney": "r_accoustic_guitar"
+      }
+    },
+
+    "q_attention": {
+      "question": "Do you want to be centre of attention?",
+      "answers": {
+        "Yes I'm gonna be a star": "r_piano",
+        "Not really, I'm a team player": "q_bighouse" 
+      }
+    },
+
+    "q_weights": {
+      "question": "Do you enjoy lifting heavy weights?",
+      "answers": {
+        "I'm often mistaken for Superman": "q_jazz", 
+        "I'm not a wimp, but...": "q_condensation" 
+      }
+    },
+
+    "q_stand": {
+      "question": "Dost thou wish to sit as stand?",
+      "answers": {
+        "Sitteth": "r_lute",
+        "Standeth": "r_harpsichord"
+      }
+    },
+
+    "q_rhyme": {
+      "question": "Do you have a good sense of rhythm & timing?",
+      "answers": {
+        "I'm a human metronome": "r_percussion",
+        "It's OK I guess": "r_trombone"
+      }
+    },
+
+    "q_folk": {
+      "question": "Do you like folk music?",
+      "answers": {
+        "I always wear flowers in my hair": "r_accoustic_guitar",
+        "I'm not a hippy": "r_digital_piano"
+      }
+    },
+
+    "q_jazz": {
+      "question": "Do you fancy a bit of jazz on the side?",
+      "answers": {
+        "Jazz isn't music, It's noise": "r_tuba",
+        "Sure thing, cat!": "r_double_bass"
+      }
+    },
+
+    "q_condensation": {
+      "question": "Do you have an aversion to spit or condensation?",
+      "answers": {
+        "Yuck, I prefer staying dry": "q_jokes", 
+        "Music above hygiene": "q_challenge" 
+      }
+    },
+
+    "q_jokes": {
+      "question": "Do you mind being the butt of people's jokes?",
+      "answers": {
+        "GOODNESS NO. I'm terribly sensitive": "r_cello",
+        "I love a good laugh": "r_viola"
+      }
+    },
+
+    "q_challenge": {
+      "question": "Do you want a challenge?",
+      "answers": {
+        "Life's too short": "q_reeds", 
+        "I like a challenge": "r_bassoon",
+        "Bring it on, give me a real challenge!": "r_oboe"
+      }
+    },
+
+    "q_reeds": {
+      "question": "Do you mind fiddling about with reeds?",
+      "answers": {
+        "That sounds like way too much hassle": "q_elegant", 
+        "I love frustrating manual tasks": "q_cover"
+      }
+    },
+
+    "q_elegant": {
+      "question": "Loud and bold or soft and elegant?",
+      "answers": {
+        "LOUDER!!!": "r_trumpet",
+        "Elegant, please": "r_flute"
+      }
+    },
+
+    "q_cover": {
+      "question": "Do you want to moonlight in an 80s cover band?",
+      "answers": {
+        "If I get my own solo": "r_saxophone",
+        "Definitely NOT": "r_clarinet"
+      }
+    },
+
+    "r_violin":     { "result": "Violin" },
+    "r_harp":       { "result": "Harp" },
+    "r_recorder":   { "result": "Recorder" },
+    "r_piano":      { "result": "Piano" },
+    "r_french_horn":{ "result": "French Horn" },
+    "r_comb_tissue_paper" :{ "result": "Comb and Tissue Paper" },
+    "r_organ":     { "result": "Organ" },
+    "r_accoustic_guitar": { "result": "Acoustic Guitar" },
+    "r_lute":      { "result": "Lute" },
+    "r_harpsichord": { "result": "Harpsichord" },
+    "r_percussion": { "result": "Percussion" },
+    "r_trombone":  { "result": "Trombone" },
+    "r_digital_piano": { "result": "Digital Piano" },
+    "r_tuba":      { "result": "Tuba" },
+    "r_double_bass": { "result": "Double Bass" },
+    "r_cello":     { "result": "Cello" },
+    "r_viola":     { "result": "Viola" },
+    "r_bassoon":   { "result": "Bassoon" },
+    "r_oboe":      { "result": "Oboe" },
+    "r_trumpet":   { "result": "Trumpet" },
+    "r_flute":     { "result": "Flute" },
+    "r_saxophone": { "result": "Saxophone" },
+    "r_clarinet":  { "result": "Clarinet" }
+
+  }
+}
