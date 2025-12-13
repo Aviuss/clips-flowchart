@@ -26,14 +26,14 @@ class ExpertSystemGUI:
         question_fact = None
         instrument_fact = None
         
-        # search facts in .clp
         for fact in self.env.facts():
             if fact.template.name == "pytanie":
                 question_fact = fact
-            elif fact.template.name == "instrument": # here might be some problems...
+                break
+            elif fact.template.name == "instrument":
                 instrument_fact = fact
-        
-        # found an instrument -> final result
+                break
+
         if instrument_fact:
             instrument_name = str(instrument_fact[0])
             self.label.config(text=f"Recommended instrument \n\n {instrument_name}")
@@ -43,10 +43,7 @@ class ExpertSystemGUI:
             tk.Button(self.button_frame, text="Show History", 
                      font=("Arial", 10),
                      command=self.show_history).pack(pady=5)
-            return
-        
-        # found a question -> displaying it
-        if question_fact:
+        elif question_fact:
             question_text = question_fact["tresc"]
             options = list(question_fact["opcje"])
             
@@ -63,7 +60,6 @@ class ExpertSystemGUI:
                                pady=8,
                                command=lambda opt=option: self.submit(opt))
                 button.pack(pady=3, fill="x", padx=20)
-            return
     
     def submit(self, answer):
         self.history.append((self.label["text"], answer))

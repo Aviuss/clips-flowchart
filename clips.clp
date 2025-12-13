@@ -8,6 +8,13 @@
 	(slot odpowiedz (type STRING))	
 )
 
+(defrule retractpyt
+    ?f <- (pytanie (tresc ?x) (opcje ?))
+    (odpowiedz_do_pytania (tresc ?x) (odpowiedz ?))
+=>
+    (retract ?f)
+)
+
 
 (defrule start
 =>
@@ -16,6 +23,7 @@
 
 (defrule q_how_old_0_5
     (odpowiedz_do_pytania (tresc "How old are you?") (odpowiedz "0-5"))
+    (not (odpowiedz_do_pytania (tresc "Are you really doing this quiz? I M P R E S S I V E! Do your parents want you to be a child prodigy?") (odpowiedz ?)))
 =>
     (assert (pytanie (tresc "Are you really doing this quiz? I M P R E S S I V E! Do your parents want you to be a child prodigy?") (opcje "Yes!" "No, I'm happy just to play")))
 )
