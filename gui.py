@@ -23,12 +23,12 @@ class ExpertSystemGUI:
         for widget in self.button_frame.winfo_children():
             widget.destroy()
         
-        question_fact = None
+        self.question_fact = None
         instrument_fact = None
         
         for fact in self.env.facts():
             if fact.template.name == "pytanie":
-                question_fact = fact
+                self.question_fact = fact
                 break
             elif fact.template.name == "instrument":
                 instrument_fact = fact
@@ -43,9 +43,9 @@ class ExpertSystemGUI:
             tk.Button(self.button_frame, text="Show History", 
                      font=("Arial", 10),
                      command=self.show_history).pack(pady=5)
-        elif question_fact:
-            question_text = question_fact["tresc"]
-            options = list(question_fact["opcje"])
+        elif self.question_fact:
+            question_text = self.question_fact["tresc"]
+            options = list(self.question_fact["opcje"])
             
             self.current_question = question_text
             self.label.config(text=question_text)
@@ -64,9 +64,8 @@ class ExpertSystemGUI:
     def submit(self, answer):
         self.history.append((self.label["text"], answer))
         
-        for fact in self.env.facts():
-            if fact.template.name == "pytanie":
-                fact.retract()
+        if self.question_fact:
+            self.question_fact.retract()    
         
         self.env.assert_string(f'(odpowiedz_do_pytania (tresc "{self.current_question}") (odpowiedz "{answer}"))')
         self.env.run()
