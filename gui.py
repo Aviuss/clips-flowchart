@@ -118,7 +118,8 @@ class ExpertSystemGUI:
 
         image_data = BytesIO(response.content)
         img = Image.open(image_data)
-        img = img.resize((250, 250), Image.LANCZOS)
+        img.thumbnail((220, 220), Image.LANCZOS)
+
 
         return ImageTk.PhotoImage(img)
 
