@@ -1,12 +1,18 @@
 import tkinter as tk
 from clips import Environment
+import json
+import requests
+from io import BytesIO
+from PIL import Image, ImageTk
+
 
 class ExpertSystemGUI:
-    def __init__(self, root, environment):
+    def __init__(self, root, environment, images_url):
         self.root = root
         self.env = environment
         self.root.geometry("600x400")
         self.root.title("Instrument Expert System")
+        self.images_url = images_url
         
         self.label = tk.Label(root, text="", font=("Arial", 10), wraplength=400)
         self.label.pack(pady=20)
@@ -16,10 +22,16 @@ class ExpertSystemGUI:
         
         self.history = []
         self.current_question = None
+
+        self.image_label = tk.Label(root)
+        self.image_label.pack(pady=5)
+        self.current_image = None
         
         self.display_next()
     
     def display_next(self):
+        self.image_label.config(image="")
+        self.current_image = None
         for widget in self.button_frame.winfo_children():
             widget.destroy()
         
@@ -43,6 +55,16 @@ class ExpertSystemGUI:
             tk.Button(self.button_frame, text="Show History", 
                      font=("Arial", 10),
                      command=self.show_history).pack(pady=5)
+
+            if self.images_url.get(instrument_name) != None:
+                try:
+                    self.current_image = self.load_image_from_url(self.images_url.get(instrument_name))
+                
+                    self.image_label.config(image=self.current_image)
+                except Exception as e:
+                    pass
+
+
         elif self.question_fact:
             question_text = self.question_fact["tresc"]
             options = list(self.question_fact["opcje"])
@@ -72,6 +94,8 @@ class ExpertSystemGUI:
         self.display_next()
     
     def restart(self):
+        self.image_label.config(image="")
+        self.current_image = None
         self.history.clear()
         self.env.reset()
         self.env.run()
@@ -88,12 +112,31 @@ class ExpertSystemGUI:
         for question, answer in self.history:
             text_widget.insert("end", f"Q: {question}\nA: {answer}\n\n")
 
+    def load_image_from_url(self, url):
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+
+        image_data = BytesIO(response.content)
+        img = Image.open(image_data)
+        img = img.resize((250, 250), Image.LANCZOS)
+
+        return ImageTk.PhotoImage(img)
+
+
+def read_images_url():
+    file = open("images.json")
+    data = json.load(file)
+    file.close()
+    return data
+
 if __name__ == "__main__":
     env = Environment()
     env.load("clips.clp")
     env.reset()
     env.run()
     
+    images_url = read_images_url()
+
     root = tk.Tk()
-    gui = ExpertSystemGUI(root, env)
+    gui = ExpertSystemGUI(root, env, images_url)
     root.mainloop()
