@@ -8,13 +8,6 @@
 	(slot odpowiedz (type STRING))	
 )
 
-(defrule retractpyt
-    ?f <- (pytanie (tresc ?x) (opcje ?))
-    (odpowiedz_do_pytania (tresc ?x) (odpowiedz ?))
-=>
-    (retract ?f)
-)
-
 
 (defrule start
 =>
